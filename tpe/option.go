@@ -5,6 +5,14 @@ type Option[T any] struct {
 	isEmpty bool
 }
 
+func Some[T any](value T) *Option[T] {
+	return NewOption(value)
+}
+
+func None[T any]() *Option[T] {
+	return EmptyOption[T]()
+}
+
 func NewOption[T any](value T) *Option[T] {
 	return &Option[T]{
 		value:   value,
