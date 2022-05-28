@@ -6,11 +6,16 @@ type Either[T any] struct {
 }
 
 func Left[T any](err error) *Either[T] {
-	return NewEither[T](err)
+	return &Either[T]{
+		left: err,
+	}
 }
 
 func Right[T any](right T) *Either[T] {
-	return NewEither[T](nil, right)
+	return &Either[T]{
+		left:  nil,
+		right: right,
+	}
 }
 
 func NewEither[T any](left error, right T) *Either[T] {
